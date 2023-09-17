@@ -1,6 +1,6 @@
 module Main (main) where
 
-import System.Environment
+import System.Environment(getArgs)
 import qualified Data.Text.IO as TIO
 
 import WordCount

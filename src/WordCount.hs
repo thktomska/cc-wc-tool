@@ -2,13 +2,12 @@ module WordCount
     ( wordCount
     ) where
 
-import qualified Data.List as L
 import qualified Data.Text as T
-import qualified Data.Text.Encoding as TE
+import Data.Text.Encoding(encodeUtf8)
 import qualified Data.ByteString as B
 
 type RawOption = String
-data WCOption = NumberOfBytes | NumberOfLines | NumberOfChars | NumberOfWords
+data WCOption = CountBytes | CountLines | CountChars | CountWords
     deriving (Eq, Show)
 
 wordCount :: T.Text -> [RawOption] -> T.Text
@@ -19,26 +18,26 @@ wordCount text rawOptions =
 wordCount' :: T.Text -> WCOption -> T.Text
 wordCount' text wcOption =
     case wcOption of
-        NumberOfWords -> wrap "words:" numberOfWords
-        NumberOfLines -> wrap "lines:" numberOfLines
-        NumberOfChars -> wrap "chars:" numberOfChars
-        NumberOfBytes -> wrap "bytes:" numberOfBytes
+        CountWords -> wrap "words:" countWords
+        CountLines -> wrap "lines:" countLines
+        CountChars -> wrap "chars:" countChars
+        CountBytes -> wrap "bytes:" countBytes
   where
     wrap prefix calc = T.pack $ prefix ++ " " ++ (show calc)
-    numberOfWords = L.length $ T.words text
-    numberOfLines = L.length $ T.lines text
-    numberOfChars = T.length text
-    numberOfBytes = B.length $ TE.encodeUtf8 text
+    countWords = length $ T.words text
+    countLines = length $ T.lines text
+    countChars = T.length text
+    countBytes = B.length $ encodeUtf8 text
 
 prepareOptions :: [RawOption] -> [WCOption]
 prepareOptions rawOptions =
     case readWCOption of
-        []      -> [NumberOfWords]
+        []      -> [CountWords]
         options -> options
   where
     readWCOption = [wcOption | (flag, wcOption) <- flags, flag `elem` (concat rawOptions)]
-    flags = [ ('c', NumberOfBytes)
-            , ('l', NumberOfLines)
-            , ('m', NumberOfChars)
-            , ('w', NumberOfWords)
+    flags = [ ('c', CountBytes)
+            , ('l', CountLines)
+            , ('m', CountChars)
+            , ('w', CountWords)
             ]

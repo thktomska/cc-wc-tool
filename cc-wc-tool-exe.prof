@@ -1,0 +1,51 @@
+	Mon Sep 18 00:00 2023 Time and Allocation Profiling Report  (Final)
+
+	   cc-wc-tool-exe +RTS -N -p -RTS ../testbig.txt -lcwm
+
+	total time  =        0.07 secs   (260 ticks @ 1000 us, 8 processors)
+	total alloc = 546,992,040 bytes  (excludes profiling overheads)
+
+COST CENTRE           MODULE                SRC                                                    %time %alloc
+
+wordCount'.countWords WordCount             src/WordCount.hs:27:5-38                                52.7   67.5
+readTextDevice        Data.Text.Internal.IO libraries/text/src/Data/Text/Internal/IO.hs:133:39-64   21.5    1.0
+main                  Main                  app/Main.hs:(9,1)-(16,42)                               19.6   18.3
+wordCount'.countLines WordCount             src/WordCount.hs:28:5-38                                 3.5    8.8
+MAIN                  MAIN                  <built-in>                                               1.2    0.0
+wordCount'.countBytes WordCount             src/WordCount.hs:30:5-43                                 0.8    4.4
+
+
+                                                                                                                                  individual      inherited
+COST CENTRE                      MODULE                  SRC                                                   no.     entries  %time %alloc   %time %alloc
+
+MAIN                             MAIN                    <built-in>                                            250           0    1.2    0.0   100.0  100.0
+ CAF                             Data.Text.Array         <entire-module>                                       454           0    0.0    0.0     0.0    0.0
+ CAF                             Data.Text.IO            <entire-module>                                       451           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.Conc.Signal         <entire-module>                                       362           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Encoding         <entire-module>                                       344           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Encoding.Iconv   <entire-module>                                       342           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Exception        <entire-module>                                       336           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.FD               <entire-module>                                       335           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Handle.FD        <entire-module>                                       333           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Handle.Internals <entire-module>                                       332           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.Event.Thread        <entire-module>                                       270           0    0.0    0.0     0.0    0.0
+ CAF:flags11_r2Fm                WordCount               src/WordCount.hs:39:5-9                               459           0    0.0    0.0     0.0    0.0
+  wordCount                      WordCount               src/WordCount.hs:(14,1)-(16,53)                       507           0    0.0    0.0     0.0    0.0
+   prepareOptions                WordCount               src/WordCount.hs:(33,1)-(43,13)                       508           0    0.0    0.0     0.0    0.0
+    prepareOptions.flags         WordCount               src/WordCount.hs:(39,5)-(43,13)                       509           1    0.0    0.0     0.0    0.0
+ CAF:lvl1_r2Fa                   WordCount               <no location info>                                    458           0    0.0    0.0     0.0    0.0
+  wordCount                      WordCount               src/WordCount.hs:(14,1)-(16,53)                       513           0    0.0    0.0     0.0    0.0
+ CAF:main1                       Main                    <no location info>                                    498           0    0.0    0.0     0.0    0.0
+  main                           Main                    app/Main.hs:(9,1)-(16,42)                             500           1    0.0    0.0     0.0    0.0
+ main                            Main                    app/Main.hs:(9,1)-(16,42)                             501           0   19.6   18.3    98.8  100.0
+  readTextDevice                 Data.Text.Internal.IO   libraries/text/src/Data/Text/Internal/IO.hs:133:39-64 502       11696   21.5    1.0    21.5    1.0
+  main.result                    Main                    app/Main.hs:14:17-47                                  503           1    0.0    0.0    57.7   80.7
+   wordCount                     WordCount               src/WordCount.hs:(14,1)-(16,53)                       504           1    0.0    0.0    57.7   80.7
+    wordCount'                   WordCount               src/WordCount.hs:(19,1)-(30,43)                       510           4    0.0    0.0    57.7   80.7
+     wordCount'.wrap             WordCount               src/WordCount.hs:26:5-60                              511           4    0.0    0.0     0.0    0.0
+     wordCount'.countBytes       WordCount               src/WordCount.hs:30:5-43                              512           1    0.8    4.4     0.8    4.4
+     wordCount'.countChars       WordCount               src/WordCount.hs:29:5-30                              515           1    0.8    0.0     0.8    0.0
+     wordCount'.countLines       WordCount               src/WordCount.hs:28:5-38                              514           1    3.5    8.8     3.5    8.8
+     wordCount'.countWords       WordCount               src/WordCount.hs:27:5-38                              516           1   52.7   67.5    52.7   67.5
+    prepareOptions               WordCount               src/WordCount.hs:(33,1)-(43,13)                       505           1    0.0    0.0     0.0    0.0
+     prepareOptions.readWCOption WordCount               src/WordCount.hs:38:5-90                              506           1    0.0    0.0     0.0    0.0
