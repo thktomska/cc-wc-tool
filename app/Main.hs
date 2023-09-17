@@ -1,7 +1,7 @@
 module Main (main) where
 
 import System.Environment
-import qualified Data.Text.IO as TIO
+import qualified Data.Text.Lazy.IO as TLIO
 
 import WordCount
 
@@ -10,7 +10,7 @@ main = do
     args <- getArgs
     case args of
         (filePath : options) -> do
-            text <- TIO.readFile filePath
+            text <- TLIO.readFile filePath
             let result = wordCount text options
-            TIO.putStrLn result
+            TLIO.putStrLn result
         _ -> putStrLn  "Invalid arguments"

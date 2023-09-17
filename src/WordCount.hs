@@ -3,20 +3,20 @@ module WordCount
     ) where
 
 import qualified Data.List as L
-import qualified Data.Text as T
-import qualified Data.Text.Encoding as TE
-import qualified Data.ByteString as B
+import qualified Data.Text.Lazy as TL
+import qualified Data.Text.Lazy.Encoding as TLE
+import qualified Data.ByteString.Lazy as BL
 
 type RawOption = String
 data WCOption = NumberOfBytes | NumberOfLines | NumberOfChars | NumberOfWords
     deriving (Eq, Show)
 
-wordCount :: T.Text -> [RawOption] -> T.Text
+wordCount :: TL.Text -> [RawOption] -> TL.Text
 wordCount text rawOptions =
-    T.intercalate "; " $
+    TL.intercalate "; " $
     map (wordCount' text) (prepareOptions rawOptions)
 
-wordCount' :: T.Text -> WCOption -> T.Text
+wordCount' :: TL.Text -> WCOption -> TL.Text
 wordCount' text wcOption =
     case wcOption of
         NumberOfWords -> wrap "words:" numberOfWords
@@ -24,11 +24,11 @@ wordCount' text wcOption =
         NumberOfChars -> wrap "chars:" numberOfChars
         NumberOfBytes -> wrap "bytes:" numberOfBytes
   where
-    wrap prefix calc = T.pack $ prefix ++ " " ++ (show calc)
-    numberOfWords = L.length $ T.words text
-    numberOfLines = L.length $ T.lines text
-    numberOfChars = T.length text
-    numberOfBytes = B.length $ TE.encodeUtf8 text
+    wrap prefix calc = TL.pack $ prefix ++ " " ++ (show calc)
+    numberOfWords = L.length $ TL.words text
+    numberOfLines = L.length $ TL.lines text
+    numberOfChars = TL.length text
+    numberOfBytes = BL.length $ TLE.encodeUtf8 text
 
 prepareOptions :: [RawOption] -> [WCOption]
 prepareOptions rawOptions =

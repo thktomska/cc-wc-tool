@@ -1,0 +1,71 @@
+	Sun Sep 17 23:19 2023 Time and Allocation Profiling Report  (Final)
+
+	   cc-wc-tool-exe +RTS -N -p -RTS ../testbig.txt -lwm
+
+	total time  =        0.14 secs   (508 ticks @ 1000 us, 8 processors)
+	total alloc = 1,716,482,824 bytes  (excludes profiling overheads)
+
+COST CENTRE              MODULE                SRC                                                    %time %alloc
+
+wordCount'.numberOfWords WordCount             src/WordCount.hs:28:5-44                                71.5   84.2
+readTextDevice           Data.Text.Internal.IO libraries/text/src/Data/Text/Internal/IO.hs:133:39-64   10.8    0.3
+main                     Main                  app/Main.hs:(9,1)-(16,42)                                7.9    4.5
+wordCount'.numberOfLines WordCount             src/WordCount.hs:29:5-44                                 7.5   11.0
+
+
+                                                                                                                                                        individual      inherited
+COST CENTRE                      MODULE                         SRC                                                                  no.     entries  %time %alloc   %time %alloc
+
+MAIN                             MAIN                           <built-in>                                                           261           0    0.0    0.0   100.0  100.0
+ CAF                             Data.Text.Array                <entire-module>                                                      472           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.Conc.Signal                <entire-module>                                                      373           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Encoding                <entire-module>                                                      355           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Encoding.Iconv          <entire-module>                                                      353           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Exception               <entire-module>                                                      347           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.FD                      <entire-module>                                                      346           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Handle.FD               <entire-module>                                                      344           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Handle.Internals        <entire-module>                                                      343           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.Event.Thread               <entire-module>                                                      281           0    0.0    0.0     0.0    0.0
+ CAF:flags11_r2Jo                WordCount                      src/WordCount.hs:40:5-9                                              478           0    0.0    0.0     0.0    0.0
+  wordCount                      WordCount                      src/WordCount.hs:(15,1)-(17,53)                                      528           0    0.0    0.0     0.0    0.0
+   prepareOptions                WordCount                      src/WordCount.hs:(34,1)-(44,13)                                      529           0    0.0    0.0     0.0    0.0
+    prepareOptions.flags         WordCount                      src/WordCount.hs:(40,5)-(44,13)                                      530           1    0.0    0.0     0.0    0.0
+ CAF:lvl11_r2JB                  WordCount                      <no location info>                                                   481           0    0.0    0.0     0.0    0.0
+  wordCount                      WordCount                      src/WordCount.hs:(15,1)-(17,53)                                      538           0    0.0    0.0     0.0    0.0
+   wordCount'                    WordCount                      src/WordCount.hs:(20,1)-(31,51)                                      539           0    0.0    0.0     0.0    0.0
+    wordCount'.wrap              WordCount                      src/WordCount.hs:27:5-61                                             540           0    0.0    0.0     0.0    0.0
+     unstreamChunks/inner        Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(88,17)-(92,59) 541           0    0.0    0.0     0.0    0.0
+      unstreamChunks/outer       Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(71,15)-(77,43) 542           1    0.0    0.0     0.0    0.0
+ CAF:lvl1_r2J4                   WordCount                      <no location info>                                                   476           0    0.0    0.0     0.0    0.0
+  wordCount                      WordCount                      src/WordCount.hs:(15,1)-(17,53)                                      543           0    0.0    0.0     0.0    0.0
+   unstreamChunks/outer          Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(71,15)-(77,43) 544           2    0.0    0.0     0.0    0.0
+    unstreamChunks/resize        Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(81,72)-(85,38) 545           1    0.0    0.0     0.0    0.0
+     unstreamChunks/inner        Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(88,17)-(92,59) 546           2    0.0    0.0     0.0    0.0
+ CAF:lvl7_r2Js                   WordCount                      <no location info>                                                   479           0    0.0    0.0     0.0    0.0
+  wordCount                      WordCount                      src/WordCount.hs:(15,1)-(17,53)                                      554           0    0.0    0.0     0.0    0.0
+   wordCount'                    WordCount                      src/WordCount.hs:(20,1)-(31,51)                                      555           0    0.0    0.0     0.0    0.0
+    wordCount'.wrap              WordCount                      src/WordCount.hs:27:5-61                                             556           0    0.0    0.0     0.0    0.0
+     unstreamChunks/inner        Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(88,17)-(92,59) 557           0    0.0    0.0     0.0    0.0
+      unstreamChunks/outer       Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(71,15)-(77,43) 558           1    0.0    0.0     0.0    0.0
+ CAF:lvl9_r2Jx                   WordCount                      <no location info>                                                   480           0    0.0    0.0     0.0    0.0
+  wordCount                      WordCount                      src/WordCount.hs:(15,1)-(17,53)                                      548           0    0.0    0.0     0.0    0.0
+   wordCount'                    WordCount                      src/WordCount.hs:(20,1)-(31,51)                                      549           0    0.0    0.0     0.0    0.0
+    wordCount'.wrap              WordCount                      src/WordCount.hs:27:5-61                                             550           0    0.0    0.0     0.0    0.0
+     unstreamChunks/inner        Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(88,17)-(92,59) 551           0    0.0    0.0     0.0    0.0
+      unstreamChunks/outer       Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(71,15)-(77,43) 552           1    0.0    0.0     0.0    0.0
+ CAF:main1                       Main                           <no location info>                                                   520           0    0.0    0.0     0.0    0.0
+  main                           Main                           app/Main.hs:(9,1)-(16,42)                                            522           1    0.0    0.0     0.0    0.0
+ main                            Main                           app/Main.hs:(9,1)-(16,42)                                            523           0    7.9    4.5   100.0  100.0
+  readTextDevice                 Data.Text.Internal.IO          libraries/text/src/Data/Text/Internal/IO.hs:133:39-64                537       11696   10.8    0.3    10.8    0.3
+  main.result                    Main                           app/Main.hs:14:17-47                                                 524           1    0.0    0.0    81.3   95.2
+   wordCount                     WordCount                      src/WordCount.hs:(15,1)-(17,53)                                      525           1    1.0    0.0    81.3   95.2
+    wordCount'                   WordCount                      src/WordCount.hs:(20,1)-(31,51)                                      531           3    0.6    0.0    80.3   95.2
+     wordCount'.wrap             WordCount                      src/WordCount.hs:27:5-61                                             532           3    0.0    0.0     0.0    0.0
+      unstreamChunks/outer       Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(71,15)-(77,43) 533           3    0.0    0.0     0.0    0.0
+       unstreamChunks/resize     Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(81,72)-(85,38) 534           9    0.0    0.0     0.0    0.0
+        unstreamChunks/inner     Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(88,17)-(92,59) 535          42    0.0    0.0     0.0    0.0
+     wordCount'.numberOfChars    WordCount                      src/WordCount.hs:30:5-34                                             547           1    0.8    0.0     0.8    0.0
+     wordCount'.numberOfLines    WordCount                      src/WordCount.hs:29:5-44                                             536           1    7.5   11.0     7.5   11.0
+     wordCount'.numberOfWords    WordCount                      src/WordCount.hs:28:5-44                                             553           1   71.5   84.2    71.5   84.2
+    prepareOptions               WordCount                      src/WordCount.hs:(34,1)-(44,13)                                      526           1    0.0    0.0     0.0    0.0
+     prepareOptions.readWCOption WordCount                      src/WordCount.hs:39:5-90                                             527           1    0.0    0.0     0.0    0.0
